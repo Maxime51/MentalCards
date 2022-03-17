@@ -11,7 +11,7 @@ type Data = {
   image:string
 }
 
-function MentalCard() {
+function MentalCard(props: any) {
   const [dataTheme, setdataTheme] = useState<string[]>([]);
   const [data, setData] = useState<Data[]>([]);
   const [themeSelected, setThemeSelected] = useState("aleatoire");

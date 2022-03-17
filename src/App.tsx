@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MentalCard from './components/MentalCard';
 import MentalCardInput from './components/MentalCardInput';
 import MentalMultipleChoice from './components/MentalMultipleChoice';
+import Scores from './components/Scores';
+
+export type Score = {
+  name: string,
+  mode: string,
+  goodesponse: number,
+  wrongreponse: number,
+}
+export const tabScore: Score[] = [];
+export const tabScoreChoice: Score[] = [];
 
 function App() {
   const [showElementSelect, setshowElementSelect] = useState(<></>);
@@ -18,13 +27,16 @@ function App() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" onClick={()=>setshowElementSelect(<MentalCard/>)}>Mental Card <span className="sr-only">(current)</span></a>
+              <a className="nav-link" onClick={() => setshowElementSelect(<MentalCard nameUser="max"/>)}>Mental Card <span className="sr-only">(current)</span></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" onClick={()=>setshowElementSelect(<MentalCardInput/>)}>FlashCard Input</a>
+              <a className="nav-link" onClick={()=>setshowElementSelect(<MentalCardInput nameUser="max"/>)}>FlashCard Input</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" onClick={()=>setshowElementSelect(<MentalMultipleChoice/>)}>FlashCard Choice</a>
+              <a className="nav-link" onClick={()=>setshowElementSelect(<MentalMultipleChoice nameUser="max"/>)}>FlashCard Choice</a>
+            </li>
+            <li className="nav-item active">
+              <a className="nav-link" onClick={()=>setshowElementSelect(<Scores nameUser="max"/>)}>Score<span className="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>

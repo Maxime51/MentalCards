@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { tabScore } from '../App';
 import { questionData } from '../dataQuestion';
 import ChangeTheme from './ChangeTheme';
 import GoodResponse from './GoodResponse';
@@ -15,7 +16,7 @@ type Data = {
 }
 
 
-function MentalCardInput() {
+function MentalCardInput(props: any) {
   const [dataTheme, setdataTheme] = useState<string[]>([]);
   const [data, setData] = useState<Data[]>([]);
   const [themeSelected, setThemeSelected] = useState("aleatoire");
@@ -44,12 +45,24 @@ function MentalCardInput() {
         setshow(1)
       }
       else {
+        tabScore.push({
+          name: `${props.nameUser}`,
+          mode: "MentalInput",
+          goodesponse: 1,
+          wrongreponse: 0
+        });
         setvalidResponse(true);
         setRandomNumber(Math.floor(Math.random() * 10));
         setshow(1)
       }
     } else {
       setvalidResponse(false);
+      tabScore.push({
+          name: `${props.nameUser}`,
+          mode: "MentalInput",
+          goodesponse: 0,
+          wrongreponse: 1
+        });
       setshow(2)
     }
   }

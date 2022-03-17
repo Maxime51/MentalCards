@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { tabScoreChoice } from '../App';
 import { questionData } from '../dataQuestion';
 import ChangeTheme from './ChangeTheme';
 import GoodResponse from './GoodResponse';
@@ -15,7 +16,7 @@ type Data = {
   image:string
 }
 
-function MentalMultipleChoice() {
+function MentalMultipleChoice(props: any) {
   const [dataTheme, setdataTheme] = useState<string[]>([]);
   const [data, setData] = useState<Data[]>([]);
   const [themeSelected, setThemeSelected] = useState("aleatoire");
@@ -32,10 +33,22 @@ function MentalMultipleChoice() {
   function valideResponse() {
     if ((responseInput === response[0]) ) {
       setvalidResponse(true);
+      tabScoreChoice.push({
+          name: `${props.nameUser}`,
+          mode: "MentalChoice",
+          goodesponse: 1,
+          wrongreponse: 0
+        });
       setRandomNumber(Math.floor(Math.random() * 10));
       setshow(1)
     } else {
       setvalidResponse(false);
+      tabScoreChoice.push({
+          name: `${props.nameUser}`,
+          mode: "MentalChoice",
+          goodesponse: 0,
+          wrongreponse: 1
+        });
       setshow(2)
     }
   }
