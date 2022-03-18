@@ -6,7 +6,7 @@ let tabResult:any = [];
 function Scores(props: any) {
   let name = "";let mode = "";let goodresponse = 0;let wrongresponse = 0;
   let nameChoice = ""; let modeChoice = ""; let goodresponseChoice = 0; let wrongresponseChoice = 0;
-console.log(tabResult)
+
   tabScore.forEach(element => {
     name = element.name;
     mode = element.mode;
@@ -56,7 +56,7 @@ console.log(tabResult)
         } else {
           tabResult.push(totalScore);
         }
-      })
+      });
     } else {
       tabResult.push(totalScore);
     }
