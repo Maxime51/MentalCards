@@ -115,7 +115,7 @@ function MentalCardInput(props: any) {
   if (show === 0) {
     return (
       <div>
-        <select onChange={(event)=>changeSelect(event.target.value)}>
+        <select className="form-select" onChange={(event)=>changeSelect(event.target.value)}>
         {dataTheme.map((theme) => {
           return <option key={theme}>{theme}</option>
         })}

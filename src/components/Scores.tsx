@@ -97,8 +97,7 @@ function Scores(props: any) {
       <br></br>
       {tabResult.map((element:any) => {
         return (
-
-        <table className="table" key={element.name}>
+        <table className="table table-dark" key={element.name}>
         <thead>
           <tr>
             <th scope="col">{element.name}</th>

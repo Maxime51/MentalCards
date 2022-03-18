@@ -69,8 +69,8 @@ function MentalCard(props: any) {
     setAffichageImage("null");
 }
   return (
-    <div>
-      <select onChange={(event)=>changeSelect(event.target.value)}>
+    <div className="container">
+      <select className="form-select" onChange={(event)=>changeSelect(event.target.value)}>
         {dataTheme.map((theme) => {
           return <option key={theme}>{theme}</option>
         })}
