@@ -1,3 +1,4 @@
+import { url } from 'inspector';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import MentalCard from './components/MentalCard';
@@ -34,6 +35,7 @@ function App() {
   const [userName, setuserName] = useState("");
 
   function resetTab(event: any) {
+
     tabScore = [];
     tabScoreChoice = [];
     setuserName(event);

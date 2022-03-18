@@ -59,7 +59,11 @@ function MentalCard(props: any) {
     setData(filteredData)
   }, [themeSelected]);
 
+
   function changeSelect(event: any) {
+
+
+
     setThemeSelected(event)
     setclick(true);
     setclick(false);

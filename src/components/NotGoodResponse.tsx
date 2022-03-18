@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 
 function NotGoodResponse() {
 
-  const url = "https://downloadwap.com/ringtones/preview/?p=preview-item&id=m640082&uid=267270861891&sid=1083305610";
+  const url = "https://phoneky.co.uk/content/mp3tones/tone/2020/funny/wronganswer_653890e85085185.mp3";
   const audio = new Audio(url);
 
   function play() {

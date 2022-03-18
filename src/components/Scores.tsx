@@ -1,4 +1,4 @@
-import { tab } from '@testing-library/user-event/dist/tab';
+
 import React, { useEffect, useState } from 'react';
 import { tabScore, tabScoreChoice } from '../App';
 
@@ -6,7 +6,7 @@ let tabResult:any = [];
 function Scores(props: any) {
   let name = "";let mode = "";let goodresponse = 0;let wrongresponse = 0;
   let nameChoice = ""; let modeChoice = ""; let goodresponseChoice = 0; let wrongresponseChoice = 0;
-
+console.log(tabResult)
   tabScore.forEach(element => {
     name = element.name;
     mode = element.mode;
@@ -48,20 +48,19 @@ function Scores(props: any) {
     }
   };
   function save() {
-
     if (tabResult.length !== 0) {
+      console.log("coucu")
       tabResult.forEach((element: any, index: number) => {
         if (element.name === props.nameUser) {
-
           tabResult[index] = totalScore;
         } else {
-          tabResult.push(totalScore)
+          tabResult.push(totalScore);
         }
       })
     } else {
-      tabResult.push(totalScore)
+      tabResult.push(totalScore);
     }
-  }
+  };
 
   return (
     <div>
@@ -88,8 +87,8 @@ function Scores(props: any) {
     </tr>
       </tbody>
       </table>
-      <form onSubmit={save}>
-        <button>Save Scores</button>
+      <form onSubmit={save} >
+        <button >Save Scores</button>
       </form>
       <div>
         <br></br>
@@ -97,7 +96,8 @@ function Scores(props: any) {
       <br></br>
       {tabResult.map((element:any) => {
         return (
-        <table className="table table-dark" key={element.name}>
+
+        <table className="table" key={element.name}>
         <thead>
           <tr>
             <th scope="col">{element.name}</th>

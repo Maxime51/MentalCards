@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 function GoodResponse() {
 
-  const url = "https://downloadwap.com/ringtones/preview/?p=preview-item&id=m690255&uid=267270861891&sid=1083305612";
+  const url = "https://downloadwap.com/content2/mp3-ringtones/tone/2020/alert/correctansw_73e68e4c5140893.mp3";
   const audio = new Audio(url);
 
   function play() {
