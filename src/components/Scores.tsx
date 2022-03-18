@@ -1,8 +1,8 @@
+import { tab } from '@testing-library/user-event/dist/tab';
 import React, { useEffect, useState } from 'react';
 import { tabScore, tabScoreChoice } from '../App';
-import GoodResponse from './GoodResponse';
 
-
+let tabResult:any = [];
 function Scores(props: any) {
   let name = "";let mode = "";let goodresponse = 0;let wrongresponse = 0;
   let nameChoice = ""; let modeChoice = ""; let goodresponseChoice = 0; let wrongresponseChoice = 0;
@@ -35,7 +35,7 @@ function Scores(props: any) {
     wrongresponse : wrongresponseChoice
   }
   const totalScore = {
-    name: resultFormat.name,
+    name: props.nameUser,
     gameInput: {
       mode: resultFormat.mode,
       goodresponse: resultFormat.goodresponse,
@@ -47,14 +47,32 @@ function Scores(props: any) {
       wrongresponse: resultChoiceFormat.wrongresponse
     }
   };
-console.log(totalScore)
+  function save() {
+
+    if (tabResult.length !== 0) {
+      tabResult.forEach((element: any, index: number) => {
+        if (element.name === props.nameUser) {
+
+          tabResult[index] = totalScore;
+        } else {
+          tabResult.push(totalScore)
+        }
+      })
+    } else {
+      tabResult.push(totalScore)
+    }
+  }
+
   return (
+    <div>
+      <h3>Score</h3>
+      <br></br>
     <table className="table">
   <thead>
     <tr>
       <th scope="col">{totalScore.name}</th>
-      <th scope="col">Good Response</th>
-      <th scope="col">Wrong Response</th>
+      <th scope="col">Good Responses</th>
+      <th scope="col">Wrong Responses</th>
     </tr>
   </thead>
   <tbody>
@@ -68,8 +86,42 @@ console.log(totalScore)
       <td>{totalScore.gameChoice.goodresponse}</td>
       <td>{totalScore.gameChoice.wrongresponse}</td>
     </tr>
-  </tbody>
-</table>
+      </tbody>
+      </table>
+      <form onSubmit={save}>
+        <button>Save Scores</button>
+      </form>
+      <div>
+        <br></br>
+        <h3>Tableau Des Scores</h3>
+      <br></br>
+      {tabResult.map((element:any) => {
+        return (
+
+        <table className="table" key={element.name}>
+        <thead>
+          <tr>
+            <th scope="col">{element.name}</th>
+            <th scope="col">Good Responses</th>
+            <th scope="col">Wrong Responses</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Mental Input</th>
+            <td>{element.gameInput.goodresponse}</td>
+            <td>{element.gameInput.wrongresponse}</td>
+          </tr>
+          <tr>
+            <th scope="row">Mental Choice</th>
+            <td>{element.gameChoice.goodresponse}</td>
+            <td>{element.gameChoice.wrongresponse}</td>
+          </tr>
+      </tbody>
+      </table>);
+      })}
+        </div>
+      </div>
   );
 }
 

@@ -11,12 +11,33 @@ export type Score = {
   goodesponse: number,
   wrongreponse: number,
 }
-export const tabScore: Score[] = [];
-export const tabScoreChoice: Score[] = [];
+
+type ScoreTotal = {
+    name: string,
+    gameInput: {
+      mode: string,
+      goodresponse: number,
+      wrongresponse: number
+    },
+    gameChoice: {
+      mode: string,
+      goodresponse: number,
+      wrongresponse: number
+    }
+}
+
+export let tabScore: Score[] = [];
+export let tabScoreChoice: Score[] = [];
 
 function App() {
   const [showElementSelect, setshowElementSelect] = useState(<></>);
+  const [userName, setuserName] = useState("");
 
+  function resetTab(event: any) {
+    tabScore = [];
+    tabScoreChoice = [];
+    setuserName(event);
+}
   return (
     <div className="App">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -30,15 +51,18 @@ function App() {
               <a className="nav-link" onClick={() => setshowElementSelect(<MentalCard nameUser="max"/>)}>Mental Card <span className="sr-only">(current)</span></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" onClick={()=>setshowElementSelect(<MentalCardInput nameUser="max"/>)}>FlashCard Input</a>
+              <a className="nav-link" onClick={() => setshowElementSelect(<MentalCardInput nameUser={userName}/>)}>FlashCard Input</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" onClick={()=>setshowElementSelect(<MentalMultipleChoice nameUser="max"/>)}>FlashCard Choice</a>
+              <a className="nav-link" onClick={()=>setshowElementSelect(<MentalMultipleChoice nameUser={userName}/>)}>FlashCard Choice</a>
             </li>
             <li className="nav-item active">
-              <a className="nav-link" onClick={()=>setshowElementSelect(<Scores nameUser="max"/>)}>Score<span className="sr-only">(current)</span></a>
+              <a className="nav-link" onClick={()=>setshowElementSelect(<Scores nameUser={userName}/>)}>Score<span className="sr-only">(current)</span></a>
             </li>
           </ul>
+          <form className="d-flex">
+            <input className="form-control me-2" id="nameInput" onChange={(event)=>resetTab(event.target.value)}type="search" placeholder="Name" aria-label="Name" />
+          </form>
         </div>
       </nav>
       <div>
