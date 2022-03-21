@@ -54,6 +54,7 @@ function Scores(props: any) {
         if (element.name === props.nameUser) {
           tabResult[index] = totalScore;
         } else {
+          console.log("");
           tabResult.push(totalScore);
         }
       });
